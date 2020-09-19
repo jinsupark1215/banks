@@ -8,7 +8,15 @@ public class StocksName {
     String symbol;
     String name;
 
-    public StocksName() {
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public StocksName() {
     }
 
     public StocksName(String symbol, String name) {

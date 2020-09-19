@@ -16,7 +16,7 @@ import com.Jinsu.stock.service.IStockService;
 
 import java.util.List;
 
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class StockController {
 	
