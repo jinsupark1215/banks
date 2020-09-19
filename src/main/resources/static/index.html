@@ -10,39 +10,36 @@
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script>
-    function draw3(){
-        var chartdata = [];
-        $.getJSON('', function (data) {
-            $.each(data, function(i, item){
-                chartdata.push([item.date, item.open, item.high, item.low, item.close]);
-            });
-        }).done(function(){
-            Highcharts.stockChart('container',{
-                title: {
-                    text: 'stock chart'
-                },
-                rangeSelector: {
-                    buttons: [,
-                        {type: 'all',count: 1,text: 'All'}
-                    ],
-                    selected: 2,
-                    inputEnabled: false
-                },
-                plotOptions: {
-                    candlestick: {
-                        downColor: 'blue',
-                        upColor: 'red'
-                    }
-                },
-                series: [{
-                    name: 'stock',
-                    type: 'candlestick',
-                    data: chartdata,
-                    tooltip: {
-                        valueDecimals: 8
-                    }
-                }]
-            });
+    function draw3(chartdata){
+    	console.log(chartdata);
+    	$.each(data, function(i, item){
+			chartdata.push([item.date, item.open, item.high, item.low, item.close]);
+		});
+        Highcharts.stockChart('container',{
+            title: {
+                text: 'stock chart'
+            },
+            rangeSelector: {
+                buttons: [,
+                    {type: 'all',count: 1,text: 'All'}
+                ],
+                selected: 2,
+                inputEnabled: false
+            },
+            plotOptions: {
+                candlestick: {
+                    downColor: 'blue',
+                    upColor: 'red'
+                }
+            },
+            series: [{
+                name: 'stock',
+                type: 'candlestick',
+                data: chartdata,
+                tooltip: {
+                    valueDecimals: 8
+                }
+            }]
         });
     }
     $(document).ready(function(){
@@ -51,13 +48,10 @@
             var input = $('#input').val();
             if(input != undefined && input != null && input != '') {
                 $.getJSON('http://localhost:8080/stock/search/' + input, function (data) {
-                    $.each(data, function (i, item) {
-                        stockName.push([item.name + "(" + item.symbol + ")"]);
-                    });
                     $('.dropdown-menu').empty();
-                    for (let i = 0; i < stockName.length; i++) {
-                        $('.dropdown-menu').append("<li id=" + stockName[i] + ">" + stockName[i] + "</li>");
-                    }
+                    $.each(data, function (i, item) {
+                        $('.dropdown-menu').append("<li id=" + item.symbol + ">" + item.name + " (" + item.symbol + ")" + "</li>");
+                    });
                 });
             } else {
                 $('.dropdown-menu').empty();
@@ -72,11 +66,15 @@
             $(this).removeClass('active');
             $(this).find('.dropdown-menu').slideUp(300);
         });
-        $('.dropdown .dropdown-menu li').click(function () {
+        $('.dropdown .dropdown-menu').on('click', 'li', function () {
             $(this).parents('.dropdown').find('span').text($(this).text());
-            $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+            $.getJSON('http://localhost:8080/stock/' + $(this).attr('id'), function (data) {
+            	console.log(data);
+            	console.log(data.stocksInformationList);
+                $('#answer').text(data.purchase + " / " + data.selling);
+                draw3(data.stocksInformationList);
+            });
         });
-        //draw3();
     });
 </script>
 </head>
@@ -91,7 +89,6 @@
               <span>Select stock</span>
               <i class="fa fa-chevron-left"></i>
             </div>
-            <input type="hidden" name="stock">
             <ul class="dropdown-menu">
             </ul>
           </div>
@@ -101,6 +98,7 @@
 
     <div class="container">
         <h1>매수   /   매도</h1>
+        <h1 id="answer"></h1>
     </div>
     <div class="container">
         <div id="container" style="height: 400px; min-width: 310px"></div>

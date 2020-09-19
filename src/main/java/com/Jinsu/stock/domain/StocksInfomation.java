@@ -11,7 +11,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 //lombok 활용~
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class StocksImfomation implements Serializable{
+public class StocksInfomation implements Serializable{
 
 	/*
 	 * date					/ string   / 	Formatted as YYYY-MM-DD
@@ -38,11 +38,11 @@ public class StocksImfomation implements Serializable{
 	protected double open;
 	protected double close;
 
-	public StocksImfomation() {
+	public StocksInfomation() {
 
 	}
 
-	public StocksImfomation(LocalDate date, double high, double low, double open, double close) {
+	public StocksInfomation(LocalDate date, double high, double low, double open, double close) {
 		this.date = date;
 		this.high = high;
 		this.low = low;
@@ -92,7 +92,7 @@ public class StocksImfomation implements Serializable{
 
 	@Override
 	public String toString() {
-		return "StocksImfomation{" +
+		return "StocksInfomation{" +
 				"date=" + date +
 				", high=" + high +
 				", low=" + low +

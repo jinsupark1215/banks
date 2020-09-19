@@ -1,6 +1,6 @@
 package com.Jinsu.stock.util;
 
-import com.Jinsu.stock.domain.StocksImfomation;
+import com.Jinsu.stock.domain.StocksInfomation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +15,8 @@ import java.util.List;
 
 @Component
 public class GetAPI {
-    public List<StocksImfomation> getPriceAPI(String site) {
-        List<StocksImfomation> list = new ArrayList<StocksImfomation>();
+    public List<StocksInfomation> getPriceAPI(String site) {
+        List<StocksInfomation> list = new ArrayList<StocksInfomation>();
 
         //api 없는 회사주식인 경우 ,  오류 체크하기!!!!!!!
         try {
@@ -29,7 +29,7 @@ public class GetAPI {
             ResponseEntity<String> result = restTemplate.getForEntity(site, String.class);
             ObjectMapper objectMapper = new ObjectMapper();
 
-            list = objectMapper.readValue(result.getBody(), new TypeReference<List<StocksImfomation>>() {});
+            list = objectMapper.readValue(result.getBody(), new TypeReference<List<StocksInfomation>>() {});
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             System.out.println(e.toString());
 

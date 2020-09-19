@@ -8,18 +8,18 @@ public class Answer implements Serializable{
 
 	protected LocalDate purchase;
 	protected LocalDate selling;
-	protected List<StocksImfomation> stocksImfomationList;
+	protected List<StocksInfomation> stocksInfomationList;
 	
 	
-	public Answer(LocalDate purchase, LocalDate selling, List<StocksImfomation> stocksImfomationList) {
+	public Answer(LocalDate purchase, LocalDate selling, List<StocksInfomation> stocksInfomationList) {
 		super();
 		this.purchase = purchase;
 		this.selling = selling;
-		this.stocksImfomationList = stocksImfomationList;
+		this.stocksInfomationList = stocksInfomationList;
 	}
 	@Override
 	public String toString() {
-		return "Answer [purchase=" + purchase + ", selling=" + selling + ", stocksInformationList=" + stocksImfomationList + "]";
+		return "Answer [purchase=" + purchase + ", selling=" + selling + ", stocksInformationList=" + stocksInfomationList + "]";
 	}
 	public LocalDate getPurchase() {
 		return purchase;
@@ -33,10 +33,10 @@ public class Answer implements Serializable{
 	public void setSelling(LocalDate selling) {
 		this.selling = selling;
 	}
-	public List<StocksImfomation> getStocksInformationList() {
-		return stocksImfomationList;
+	public List<StocksInfomation> getStocksInformationList() {
+		return stocksInfomationList;
 	}
-	public void setStocksImfomationList(List<StocksImfomation> stocksImfomationList) {
-		this.stocksImfomationList = stocksImfomationList;
+	public void setStocksImfomationList(List<StocksInfomation> stocksInfomationList) {
+		this.stocksInfomationList = stocksInfomationList;
 	}
 }

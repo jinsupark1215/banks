@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.Jinsu.stock.domain.Answer;
-import com.Jinsu.stock.domain.StocksImfomation;
+import com.Jinsu.stock.domain.StocksInfomation;
 
 @Repository("stockRepository")
 public class StockRepository implements IStockRepository{
@@ -23,7 +23,7 @@ public class StockRepository implements IStockRepository{
 	 */
 
 	@Override
-	public Answer getstock(List<StocksImfomation> list) {
+	public Answer getstock(List<StocksInfomation> list) {
 		// 알고리즘 사용해서 답 도출 ~ ( 구간합)?
 		int HighIdx = 0;
 		int LowIdx = 0;
@@ -32,9 +32,8 @@ public class StockRepository implements IStockRepository{
 		double MaxGain = 0;
 		double MaxHigh = 0;
 		double MaxLow = Double.MAX_VALUE;
-		
 		for (int i = 0; i < list.size(); i++) {
-			StocksImfomation si = list.get(i);
+			StocksInfomation si = list.get(i);
 			if(MaxLow > si.getLow()) {
 				MaxLow = si.getLow();
 				LowIdx = i;
