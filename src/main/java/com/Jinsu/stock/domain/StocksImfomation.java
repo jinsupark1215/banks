@@ -1,11 +1,16 @@
 package com.Jinsu.stock.domain;
 
 import java.io.Serializable;
-import java.util.List;
+import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 //lombok 활용~
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StocksImfomation implements Serializable{
 
 	/*
@@ -25,44 +30,32 @@ public class StocksImfomation implements Serializable{
 		change				/number	/Change from previous trading day.
 		changePercent	/number/	Change percent from previous trading day.
 	 */
-	protected String date;
-	protected double open;
-	protected double close;
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonSerialize(using = LocalDateSerializer.class)
+	protected LocalDate date;
 	protected double high;
 	protected double low;
-	protected double volume;
-	protected double uOpen;
-	protected double uClose;
-	protected double uHigh;
-	protected double uLow;
-	protected double uVolume;
-	protected double change;
-	protected double changePercent;
-	protected String label;
-	protected double changeOverTime;
-	
-	public String getDate() {
+	protected double open;
+	protected double close;
+
+	public StocksImfomation() {
+
+	}
+
+	public StocksImfomation(LocalDate date, double high, double low, double open, double close) {
+		this.date = date;
+		this.high = high;
+		this.low = low;
+		this.open = open;
+		this.close = close;
+	}
+
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
-	}
-
-	public double getOpen() {
-		return open;
-	}
-
-	public void setOpen(double open) {
-		this.open = open;
-	}
-
-	public double getClose() {
-		return close;
-	}
-
-	public void setClose(double close) {
-		this.close = close;
 	}
 
 	public double getHigh() {
@@ -81,103 +74,30 @@ public class StocksImfomation implements Serializable{
 		this.low = low;
 	}
 
-	public double getVolume() {
-		return volume;
+	public double getOpen() {
+		return open;
 	}
 
-	public void setVolume(double volume) {
-		this.volume = volume;
+	public void setOpen(double open) {
+		this.open = open;
 	}
 
-	public double getuOpen() {
-		return uOpen;
+	public double getClose() {
+		return close;
 	}
 
-	public void setuOpen(double uOpen) {
-		this.uOpen = uOpen;
+	public void setClose(double close) {
+		this.close = close;
 	}
 
-	public double getuClose() {
-		return uClose;
-	}
-
-	public void setuClose(double uClose) {
-		this.uClose = uClose;
-	}
-
-	public double getuHigh() {
-		return uHigh;
-	}
-
-	public void setuHigh(double uHigh) {
-		this.uHigh = uHigh;
-	}
-
-	public double getuLow() {
-		return uLow;
-	}
-
-	public void setuLow(double uLow) {
-		this.uLow = uLow;
-	}
-
-	public double getuVolume() {
-		return uVolume;
-	}
-
-	public void setuVolume(double uVolume) {
-		this.uVolume = uVolume;
-	}
-
-	public double getChange() {
-		return change;
-	}
-
-	public void setChange(double change) {
-		this.change = change;
-	}
-
-	public double getChangePercent() {
-		return changePercent;
-	}
-
-	public void setChangePercent(double changePercent) {
-		this.changePercent = changePercent;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	public double getChangeOverTime() {
-		return changeOverTime;
-	}
-
-	public void setChangeOverTime(double changeOverTime) {
-		this.changeOverTime = changeOverTime;
-	}
-
-	public StocksImfomation(Object object, Object object2, Object object3, Object object4, Object object5, Object object6, Object object7, Object object8,
-			Object object9, Object object10, Object object11, Object object12, Object object13, Object object14, Object object15) {
-		super();
-		this.date = (String) object;
-		this.open = Double.valueOf((String) object2);
-		this.close = Double.valueOf((String) object3);
-		this.high = Double.valueOf((String) object4);
-		this.low = Double.valueOf((String) object5);
-		this.volume = Double.valueOf((String)  object6);
-		this.uOpen = Double.valueOf((String) object7);
-		this.uClose = Double.valueOf((String)  object8);
-		this.uHigh = Double.valueOf((String) object9);
-		this.uLow = Double.valueOf((String) object10);
-		this.uVolume = Double.valueOf((String) object11);
-		this.change = Double.valueOf((String)  object12);
-		this.changePercent = Double.valueOf((String) object13);
-		this.label = (String) object14;
-		this.changeOverTime = Double.valueOf((String)  object15);
+	@Override
+	public String toString() {
+		return "StocksImfomation{" +
+				"date=" + date +
+				", high=" + high +
+				", low=" + low +
+				", open=" + open +
+				", close=" + close +
+				'}';
 	}
 }

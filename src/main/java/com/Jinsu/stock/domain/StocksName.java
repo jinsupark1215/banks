@@ -1,0 +1,33 @@
+package com.Jinsu.stock.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class StocksName {
+    String symbol;
+    String name;
+
+    public StocksName() {
+    }
+
+    public StocksName(String symbol, String name) {
+        this.symbol = symbol;
+        this.name = name;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    @Override
+    public String toString() {
+        return "StocksName{" +
+                "symbol='" + symbol + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}

@@ -1,32 +1,42 @@
 package com.Jinsu.stock.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 public class Answer implements Serializable{
 
-	protected String purchase;
-	protected String selling;
+	protected LocalDate purchase;
+	protected LocalDate selling;
+	protected List<StocksImfomation> stocksImfomationList;
 	
 	
-	public Answer(String purchase, String selling) {
+	public Answer(LocalDate purchase, LocalDate selling, List<StocksImfomation> stocksImfomationList) {
 		super();
 		this.purchase = purchase;
 		this.selling = selling;
+		this.stocksImfomationList = stocksImfomationList;
 	}
 	@Override
 	public String toString() {
-		return "Answer [purchase=" + purchase + ", selling=" + selling + "]";
+		return "Answer [purchase=" + purchase + ", selling=" + selling + ", stocksInformationList=" + stocksImfomationList + "]";
 	}
-	public String getPurchase() {
+	public LocalDate getPurchase() {
 		return purchase;
 	}
-	public void setPurchase(String purchase) {
+	public void setPurchase(LocalDate purchase) {
 		this.purchase = purchase;
 	}
-	public String getSelling() {
+	public LocalDate getSelling() {
 		return selling;
 	}
-	public void setSelling(String selling) {
+	public void setSelling(LocalDate selling) {
 		this.selling = selling;
+	}
+	public List<StocksImfomation> getStocksInformationList() {
+		return stocksImfomationList;
+	}
+	public void setStocksImfomationList(List<StocksImfomation> stocksImfomationList) {
+		this.stocksImfomationList = stocksImfomationList;
 	}
 }

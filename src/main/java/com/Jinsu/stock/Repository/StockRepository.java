@@ -1,17 +1,15 @@
 package com.Jinsu.stock.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.Jinsu.stock.domain.Answer;
 import com.Jinsu.stock.domain.StocksImfomation;
 
-@Repository
+@Repository("stockRepository")
 public class StockRepository implements IStockRepository{
 
 	private static final Logger log = LoggerFactory.getLogger(StockRepository.class);
@@ -27,7 +25,6 @@ public class StockRepository implements IStockRepository{
 	@Override
 	public Answer getstock(List<StocksImfomation> list) {
 		// 알고리즘 사용해서 답 도출 ~ ( 구간합)?
-		System.out.println("레포짓");
 		int HighIdx = 0;
 		int LowIdx = 0;
 		int ansLowIdx = 0;
@@ -50,15 +47,9 @@ public class StockRepository implements IStockRepository{
 				MaxGain = Math.max(MaxGain, MaxHigh - MaxLow);
 				ansLowIdx = LowIdx;
 				ansHighIdx = HighIdx;
-				System.out.println("빙고 : " + MaxGain);
 			}
-			System.out.println("day: " + si.getDate() + " High : " + si.getHigh() + " Low : " + si.getLow());
-			System.out.println("Max : " + MaxHigh + "Min : " + MaxLow );
 		}
-		System.out.println(MaxGain);
-		System.out.println(list.get(ansLowIdx).getDate() + " " + list.get(ansHighIdx).getDate());
-		Answer answer = new Answer(list.get(ansLowIdx).getDate(),list.get(ansHighIdx).getDate());
-		System.out.println("리포짓  Answer  " + answer.toString());
+		Answer answer = new Answer(list.get(ansLowIdx).getDate(),list.get(ansHighIdx).getDate(), list);
 		return answer;
 	}
 
