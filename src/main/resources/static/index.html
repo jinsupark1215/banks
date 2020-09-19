@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jinsu stock</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js">
+</script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+		<script>
+    $(document).ready(function(){
+    	 var stockName = [];
+			$.getJSON('http://localhost:8080/stock/list', function (data) {
+				$.each(data, function(i, item){
+					stockName.push([item.name +"(" +item.symbol + ")"]);
+             });			
+        for (let i = 0; i < stockName.length; i++) {
+            $('.dropdown-menu').append("<li id="+ stockName[i] + ">" + stockName[i] +"</li>");
+        }
+        $('.dropdown').click(function () {
+        $(this).attr('tabindex', 1).focus();
+        $(this).toggleClass('active');
+        $(this).find('.dropdown-menu').slideToggle(300);
+        });
+        $('.dropdown').focusout(function () {
+            $(this).removeClass('active');
+            $(this).find('.dropdown-menu').slideUp(300);
+        });
+        $('.dropdown .dropdown-menu li').click(function () {
+            $(this).parents('.dropdown').find('span').text($(this).text());
+            $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
+        });
+
+
+        $('.dropdown-menu li').click(function () {
+        var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
+            msg = '<span class="msg">Hidden input value: ';
+        $('.msg').html(msg + input + '</span>');
+        }); 
+        
+        ///
+        function draw3(){
+				var chartdata = [];
+				$.getJSON('', function (data) {
+					$.each(data, function(i, item){
+						chartdata.push([item.date, item.open, item.high, item.low, item.close]);
+					});
+				}).done(function(){
+					Highcharts.stockChart('container',{
+						title: {
+							text: 'stock chart'
+						},
+						rangeSelector: {
+							buttons: [, 
+								{type: 'all',count: 1,text: 'All'}
+							],
+							selected: 2,
+							inputEnabled: false
+						},
+						plotOptions: {
+							candlestick: {
+								downColor: 'blue',
+								upColor: 'red'
+							}
+						},
+						series: [{
+							name: 'stock',
+							type: 'candlestick',
+							data: chartdata,
+							tooltip: {
+								valueDecimals: 8
+							}
+						}]
+					});
+				});
+			}
+			draw3();
+    })
+    })
+</script>
+</head>
+
+<body>
+    <div class="container">
+        <span class="choose">Choose stock</span>
+      
+          <div class="dropdown">
+            <div class="select">
+              <span>Select stock</span>
+              <i class="fa fa-chevron-left"></i>
+            </div>
+            <input type="hidden" name="stock">
+            <ul class="dropdown-menu">
+            </ul>
+          </div>
+      
+      <span class="msg"></span>
+    </div>
+
+    <div class="container">
+        <h1>매수   /   매도</h1>
+    </div>
+    <div class="container">
+        <div id="container" style="height: 400px; min-width: 310px"></div>
+    </div>
+</body>
+
+</html>
