@@ -87,4 +87,29 @@
   .dropdown .dropdown-menu li:active {
       background-color: #e2e2e2
   }
-  
+  table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  background: #34495e; 
+  color: #f3f3f3;
+}
+
+td, th { 
+  padding: 8px; 
+  text-align: left; 
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #16a085; 
+}
+
+th { 
+  background: #2c3e50; 
+  font-weight: bold; 
+}
+
+h1 a {
+  text-decoration: none;
+  color: #fff;
+}

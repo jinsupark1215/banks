@@ -10,10 +10,10 @@
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script>
-    function draw3(chartdata){
-    	console.log(chartdata);
+    function draw3(data){
+    	var chartdata = [];
     	$.each(data, function(i, item){
-			chartdata.push([item.date, item.open, item.high, item.low, item.close]);
+			chartdata.push([Date.parse(item.date), item.open, item.high, item.low, item.close]);
 		});
         Highcharts.stockChart('container',{
             title: {
@@ -69,9 +69,11 @@
         $('.dropdown .dropdown-menu').on('click', 'li', function () {
             $(this).parents('.dropdown').find('span').text($(this).text());
             $.getJSON('http://localhost:8080/stock/' + $(this).attr('id'), function (data) {
-            	console.log(data);
-            	console.log(data.stocksInformationList);
-                $('#answer').text(data.purchase + " / " + data.selling);
+                $('#purchase').text(data.purchase);
+                $('#selling').text(data.selling);
+                $('#purchasePrice').text(data.purchasePrice);
+                $('#sellingPrice').text(data.sellingPrice);
+                $('#percent').text(data.percent + " %");
                 draw3(data.stocksInformationList);
             });
         });
@@ -82,7 +84,7 @@
 <body>
     <div class="container">
         <span class="choose">Choose stock</span>
-        <input type="text" id="input"/>
+        <input type="text" id="input" placeholder="search"/>
       
           <div class="dropdown">
             <div class="select">
@@ -97,11 +99,30 @@
     </div>
 
     <div class="container">
-        <h1>매수   /   매도</h1>
-        <h1 id="answer"></h1>
+    <table>
+  <thead>
+    <tr>
+      <th>매수날짜</th>
+      <th>매도날짜</th>
+      <th>매수가격</th>
+      <th>매도가격</th>
+      <th>최대수익률</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id ="purchase"></td>
+      <td id ="selling"></td>
+      <td id ="purchasePrice"></td>
+      <td id ="sellingPrice"></td>
+      <td id ="percent"></td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
     </div>
-    <div class="container">
-        <div id="container" style="height: 400px; min-width: 310px"></div>
+    <div >
+        <div id="container" style="height: 600px; min-width: 810px "></div>
     </div>
 </body>
 

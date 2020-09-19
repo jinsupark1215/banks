@@ -48,7 +48,9 @@ public class StockRepository implements IStockRepository{
 				ansHighIdx = HighIdx;
 			}
 		}
-		Answer answer = new Answer(list.get(ansLowIdx).getDate(),list.get(ansHighIdx).getDate(), list);
+		int percent = (int) (((list.get(ansHighIdx).getHigh() * 100)/list.get(ansLowIdx).getLow())-100);
+		Answer answer = new Answer(list.get(ansLowIdx).getDate(),list.get(ansHighIdx).getDate(),
+				list.get(ansLowIdx).getLow(), list.get(ansHighIdx).getHigh(), percent,list);
 		return answer;
 	}
 
