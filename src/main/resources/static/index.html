@@ -5,24 +5,68 @@
     <title>Jinsu stock</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js">
 </script>
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-		<script>
+<script>
+    function draw3(){
+        var chartdata = [];
+        $.getJSON('', function (data) {
+            $.each(data, function(i, item){
+                chartdata.push([item.date, item.open, item.high, item.low, item.close]);
+            });
+        }).done(function(){
+            Highcharts.stockChart('container',{
+                title: {
+                    text: 'stock chart'
+                },
+                rangeSelector: {
+                    buttons: [,
+                        {type: 'all',count: 1,text: 'All'}
+                    ],
+                    selected: 2,
+                    inputEnabled: false
+                },
+                plotOptions: {
+                    candlestick: {
+                        downColor: 'blue',
+                        upColor: 'red'
+                    }
+                },
+                series: [{
+                    name: 'stock',
+                    type: 'candlestick',
+                    data: chartdata,
+                    tooltip: {
+                        valueDecimals: 8
+                    }
+                }]
+            });
+        });
+    }
     $(document).ready(function(){
-    	 var stockName = [];
-			$.getJSON('http://localhost:8080/stock/list', function (data) {
-				$.each(data, function(i, item){
-					stockName.push([item.name +"(" +item.symbol + ")"]);
-             });			
-        for (let i = 0; i < stockName.length; i++) {
-            $('.dropdown-menu').append("<li id="+ stockName[i] + ">" + stockName[i] +"</li>");
-        }
+        $('#input').on('keyup', function () {
+            var stockName = [];
+            var input = $('#input').val();
+            if(input != undefined && input != null && input != '') {
+                $.getJSON('http://localhost:8080/stock/search/' + input, function (data) {
+                    $.each(data, function (i, item) {
+                        stockName.push([item.name + "(" + item.symbol + ")"]);
+                    });
+                    $('.dropdown-menu').empty();
+                    for (let i = 0; i < stockName.length; i++) {
+                        $('.dropdown-menu').append("<li id=" + stockName[i] + ">" + stockName[i] + "</li>");
+                    }
+                });
+            } else {
+                $('.dropdown-menu').empty();
+            }
+        });
         $('.dropdown').click(function () {
-        $(this).attr('tabindex', 1).focus();
-        $(this).toggleClass('active');
-        $(this).find('.dropdown-menu').slideToggle(300);
+            $(this).attr('tabindex', 1).focus();
+            $(this).toggleClass('active');
+            $(this).find('.dropdown-menu').slideToggle(300);
         });
         $('.dropdown').focusout(function () {
             $(this).removeClass('active');
@@ -32,59 +76,15 @@
             $(this).parents('.dropdown').find('span').text($(this).text());
             $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
         });
-
-
-        $('.dropdown-menu li').click(function () {
-        var input = '<strong>' + $(this).parents('.dropdown').find('input').val() + '</strong>',
-            msg = '<span class="msg">Hidden input value: ';
-        $('.msg').html(msg + input + '</span>');
-        }); 
-        
-        ///
-        function draw3(){
-				var chartdata = [];
-				$.getJSON('', function (data) {
-					$.each(data, function(i, item){
-						chartdata.push([item.date, item.open, item.high, item.low, item.close]);
-					});
-				}).done(function(){
-					Highcharts.stockChart('container',{
-						title: {
-							text: 'stock chart'
-						},
-						rangeSelector: {
-							buttons: [, 
-								{type: 'all',count: 1,text: 'All'}
-							],
-							selected: 2,
-							inputEnabled: false
-						},
-						plotOptions: {
-							candlestick: {
-								downColor: 'blue',
-								upColor: 'red'
-							}
-						},
-						series: [{
-							name: 'stock',
-							type: 'candlestick',
-							data: chartdata,
-							tooltip: {
-								valueDecimals: 8
-							}
-						}]
-					});
-				});
-			}
-			draw3();
-    })
-    })
+        //draw3();
+    });
 </script>
 </head>
 
 <body>
     <div class="container">
         <span class="choose">Choose stock</span>
+        <input type="text" id="input"/>
       
           <div class="dropdown">
             <div class="select">
