@@ -1,6 +1,7 @@
 package com.Jinsu.stock.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.commons.codec.binary.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StocksName {
@@ -23,11 +24,23 @@ public class StocksName {
         this.symbol = symbol;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "StocksName{" +
                 "symbol='" + symbol + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public boolean contains(String input) {
+        return this.name.toLowerCase().contains(input.toLowerCase());
     }
 }

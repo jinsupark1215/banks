@@ -9,5 +9,5 @@ import com.Jinsu.stock.domain.StocksName;
 public interface IStockService {
 
 	Answer stockService(String name);
-	List<StocksName> getNameList();
+	List<StocksName> searchName(String input);
 }

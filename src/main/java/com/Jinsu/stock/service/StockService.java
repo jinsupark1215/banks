@@ -1,6 +1,7 @@
 package com.Jinsu.stock.service;
 
 import com.Jinsu.stock.domain.StocksName;
+import com.Jinsu.stock.domain.StocksNameList;
 import com.Jinsu.stock.util.GetAPI;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,8 +36,6 @@ public class StockService implements IStockService{
 	private String priceSite;
 	@Value("${iexcloud.price.token}")
 	private String token;
-	@Value("${stocks.name.list.file}")
-	private String stocksNameListFileName;
 
 	@Qualifier("stockRepository")
 	@Autowired
@@ -43,6 +43,9 @@ public class StockService implements IStockService{
 
 	@Autowired
 	private GetAPI getAPI;
+
+	@Autowired
+	private StocksNameList stocksNameList;
 
 	@Override
 	public Answer stockService(String name) {
@@ -52,16 +55,12 @@ public class StockService implements IStockService{
 	}
 
 	@Override
-	public List<StocksName> getNameList() {
-		ClassPathResource resource = new ClassPathResource(stocksNameListFileName);
-		List<StocksName> nameList;
-		try {
-			Path path = Paths.get(resource.getURI());
-			String jsonString = Files.readAllLines(path).get(0);
-			ObjectMapper objectMapper = new ObjectMapper();
-			nameList = objectMapper.readValue(jsonString, new TypeReference<List<StocksName>>() {});
-		} catch (IOException e) {
-			nameList = new ArrayList<>();
+	public List<StocksName> searchName(String input) {
+		List<StocksName> nameList = new ArrayList<>();
+		for(StocksName stocksName : stocksNameList.getStocksNameList()) {
+			if(stocksName.contains(input)) {
+				nameList.add(stocksName);
+			}
 		}
 		return nameList;
 	}

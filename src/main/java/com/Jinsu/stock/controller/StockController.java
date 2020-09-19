@@ -32,9 +32,9 @@ public class StockController {
 		return answer;
 	}
 
-	@GetMapping(path="stock/list")
-	public List<StocksName> getNameList() {
-		List<StocksName> nameList = this.stockService.getNameList();
+	@GetMapping(path="stock/search/{input}")
+	public List<StocksName> searchName(@PathVariable(required = true) String input) {
+		List<StocksName> nameList = this.stockService.searchName(input);
 		return nameList;
 	}
 }
