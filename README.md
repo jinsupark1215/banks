@@ -10,13 +10,16 @@
 
 ## 시나리오
 - search 창에 회사이름 입력
-![1](/banks/img/1.png)
+
+<img src="/img/1.png" width="50%" height="40%" alt="입력"></img>
 
 - select 창의 회사 선택
-![2](/banks/img/2.png)
+
+<img src="/img/2.png" width="50%" height="40%" alt="선택"></img>
 
 - 결과
-![3](/banks/img/3.png)
+
+<img src="/img/3.png" width="50%" height="40%" alt="결과"></img>
 
 ## 사용 알고리즘
 - 최저점과 최고점 찾아서 반환
