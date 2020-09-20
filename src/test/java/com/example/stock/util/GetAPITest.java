@@ -1,17 +1,17 @@
 package com.example.stock.util;
 
-import com.Jinsu.stock.Repository.IStockRepository;
-import com.Jinsu.stock.Repository.StockRepository;
-import com.Jinsu.stock.service.StockService;
-import com.Jinsu.stock.util.GetAPI;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Description;
 import org.springframework.test.context.ContextConfiguration;
 
+import com.Jinsu.stock.util.GetAPI;
+
+@Description("API test")
 @SpringBootTest
 @ContextConfiguration(classes = {GetAPI.class})
 public class GetAPITest {

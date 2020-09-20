@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.context.annotation.Description;
+
+@Description("알고리즘 결과 domain")
 public class Answer implements Serializable{
 
 	protected LocalDate purchase;

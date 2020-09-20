@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Description;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,13 +48,14 @@ public class StockService implements IStockService{
 	@Autowired
 	private StocksNameList stocksNameList;
 
+	@Description("회사 6개월간 기록 api 호출")
 	@Override
 	public Answer stockService(String name) {
-		// api token 보내서 긁어오기
 		Answer ans = stockRepository.getstock(getAPI.getPriceAPI(priceSite + name + token));
 		return ans;
 	}
 
+	@Description("회사이름 통한 검색어 추가")
 	@Override
 	public List<StocksName> searchName(String input) {
 		List<StocksName> nameList = new ArrayList<>();

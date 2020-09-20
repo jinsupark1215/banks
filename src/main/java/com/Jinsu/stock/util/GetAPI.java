@@ -3,6 +3,8 @@ package com.Jinsu.stock.util;
 import com.Jinsu.stock.domain.StocksInfomation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.context.annotation.Description;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
@@ -15,10 +17,11 @@ import java.util.List;
 
 @Component
 public class GetAPI {
+	
+	@Description("회사 6개월 간 기록 api")
     public List<StocksInfomation> getPriceAPI(String site) {
         List<StocksInfomation> list = new ArrayList<StocksInfomation>();
 
-        //api 없는 회사주식인 경우 ,  오류 체크하기!!!!!!!
         try {
 
             HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
@@ -39,4 +42,5 @@ public class GetAPI {
 
         return list;
     }
+	
 }

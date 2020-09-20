@@ -13,8 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Description;
 import org.springframework.context.annotation.Import;
 
+@Description("Service test")
 @SpringBootTest(classes = {StockService.class, StockRepository.class, GetAPI.class})
 @Import(InitConfigurationTest.class)
 public class StockServiceTest {

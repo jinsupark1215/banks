@@ -2,7 +2,9 @@ package com.Jinsu.stock.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.commons.codec.binary.StringUtils;
+import org.springframework.context.annotation.Description;
 
+@Description("회사 이름 domain")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StocksName {
     String symbol;
