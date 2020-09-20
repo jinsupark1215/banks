@@ -3,6 +3,10 @@
 ## Project
 - 해외 주식 회사 이름을 이용한 6개월 간 최대 수익을 낼 수 있는 매수날짜와 매도날짜 산출.
 
+## 실행 환경
+- 자체 Spring boot Tomcat 서버 사용
+- http://localhost:8080/
+
 ## 사용 기술
 - Backend : Spring boot(java version: 8)
 - frontend : html, css, jqury
@@ -27,6 +31,7 @@
 
 ## Class 설명
 - 각 class 마다 method에 Description 활용해 설명
+- testcode 작성
 
 ## 오류 노트
 1. StockService에서 api 호출 과정에서 cors현상 발생
