@@ -10,13 +10,13 @@
 
 ## 시나리오
 - search 창에 회사이름 입력
-![Alt text](/path/to/1.jpg)
+![1](/banks/img/1.png)
 
 - select 창의 회사 선택
-![Alt text](/path/to/2.jpg)
+![2](/banks/img/2.png)
 
 - 결과
-![Alt text](/path/to/3.jpg)
+![3](/banks/img/3.png)
 
 ## 사용 알고리즘
 - 최저점과 최고점 찾아서 반환
