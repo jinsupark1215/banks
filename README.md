@@ -1,4 +1,4 @@
-# Banksalad
+# Bank
 * * *
 ## Project
 - 해외 주식 회사 이름을 이용한 6개월 간 최대 수익을 낼 수 있는 매수날짜와 매도날짜 산출.
@@ -39,7 +39,7 @@
 
 ## 오류 노트
 1. StockService에서 api 호출 과정에서 cors현상 발생
-- 해결 : corssOrigin 활용해 해결
+- 해결 : cssOrigin 활용해 해결
 
 2. PathVariable : 쿼리스트링만 사용하는 경우 리퀘스트 2번 오는 현상
 - 해결 : 쿼리스트링 앞에 문자 붙여 해결
