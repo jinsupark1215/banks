@@ -39,7 +39,7 @@
 
 ## 오류 노트
 1. StockService에서 api 호출 과정에서 cors현상 발생
-- 해결 : cssOrigin 활용해 해결
+- 해결 : crossOrigin 활용해 해결
 
 2. PathVariable : 쿼리스트링만 사용하는 경우 리퀘스트 2번 오는 현상
 - 해결 : 쿼리스트링 앞에 문자 붙여 해결
