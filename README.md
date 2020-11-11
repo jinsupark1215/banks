@@ -49,5 +49,5 @@
 4. 회사 이름 전체 response 시 서버 딜레이 현상
 - 해결 : 전체를 response 않고 사용자가 회사명 검색 시마다 맞는 회사만 반환
 
-##코드리뷰
-[CodeReview]
+## 코드리뷰
+[CodeReview]https://github.com/jinsupark1215/banks/blob/master/CodeReview.md
