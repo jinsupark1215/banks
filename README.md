@@ -50,4 +50,4 @@
 - 해결 : 전체를 response 않고 사용자가 회사명 검색 시마다 맞는 회사만 반환
 
 ## 코드리뷰
-[CodeReview]:https://github.com/jinsupark1215/banks/blob/master/CodeReview.md
+[CodeReview](https://github.com/jinsupark1215/banks/blob/master/CodeReview.md)
