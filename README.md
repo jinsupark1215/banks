@@ -5,7 +5,6 @@
 
 ## 실행 환경
 - 자체 Spring boot Tomcat 서버 사용
-- http://localhost:8080/
 
 ## 사용 기술
 - Backend : Spring boot(java version: 8)
@@ -13,17 +12,17 @@
 - API : IEXcloud OpenAPI
 
 ## 시나리오
-- search 창에 회사명 입력
+#### - search 창에 회사명 입력
 
-<img src="/img/1.png" width="50%" height="40%" alt="입력"></img>
+<img src="/img/1.png" width="100%" height="80%" alt="입력"></img>
 
-- select 창의 회사 선택
+#### - select 창의 회사 선택
 
-<img src="/img/2.png" width="50%" height="40%" alt="선택"></img>
+<img src="/img/2.png" width="100%" height="80%" alt="선택"></img>
 
-- 결과
+#### - 결과
 
-<img src="/img/3.png" width="50%" height="40%" alt="결과"></img>
+<img src="/img/3.png" width="100%" height="80%" alt="결과"></img>
 
 
 ## 시나리오 이유
