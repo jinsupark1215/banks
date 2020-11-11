@@ -26,15 +26,15 @@
 
 
 ## 시나리오 이유
-- 회사 symbol을 잘 모르는 사용자를 위해 회사 이름으로 검색 후 선택 후 확인할 수 있도록 사용
+- 회사 symbol을 잘 모르는 사용자를 위해 회사 이름으로 검색 후 선택하여 확인할 수 있도록 사용
 
 ## 알고리즘
 - 최저점과 최고점 찾아서 반환
 - 시간복잡도 O(N)
 
 ## Class 설명
-- 각 class 마다 method에 Description 활용해 설명
-- testcode 작성
+- 각 Class 마다 Method에 Description 활용해 설명
+- Testcode 작성
 
 ## 오류 노트
 1. StockService에서 api 호출 과정에서 cors현상 발생
@@ -48,3 +48,6 @@
 
 4. 회사 이름 전체 response 시 서버 딜레이 현상
 - 해결 : 전체를 response 않고 사용자가 회사명 검색 시마다 맞는 회사만 반환
+
+##코드리뷰
+[CodeReview]
