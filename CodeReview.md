@@ -1,14 +1,17 @@
 # CodeReviw
 
 ####  1. StockService에서 api 호출 과정에서 cors현상 발생
+
 ```
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Service("stockService")
 ```
 
-2. PathVariable : 쿼리스트링만 사용하는 경우 리퀘스트 2번 오는 현상
 
-문제 코드 - 리퀘스트 중복되는 현상 (StockController Class)
+#### 2. PathVariable : 쿼리스트링만 사용하는 경우 리퀘스트 2번 오는 현상
+
+- 문제 코드 - 리퀘스트 중복되는 현상 (StockController Class)
+
 ```
 @Description("회사 symbol로 6개월 간의 기록 호출")
 	@GetMapping(path="{name}")
@@ -24,7 +27,9 @@
 		return nameList;
 	}
 ```
-수정 코드
+
+- 수정 코드
+
 ```
 @Description("회사 symbol로 6개월 간의 기록 호출")
 	@GetMapping(path="stock/{name}")
@@ -41,8 +46,11 @@
 	}
 ```
 
-3. 회사 이름 api 호출 시 api 할당량 초과
+
+#### 3. 회사 이름 api 호출 시 api 할당량 초과
+
 - 별도의 JSON 파일 삽입, init 시에 JSON 파싱 (initConfiguration Class)
+
 ```
 @Description("회사이름 json 파일 얻어오기")
 @Configuration
@@ -69,7 +77,9 @@ public class InitConfiguration {
 }
 ```
 
-4. 회사 이름 전체 response 시 서버 딜레이 현상
+
+#### 4. 회사 이름 전체 response 시 서버 딜레이 현상
+
 - 텍스트 변화 감지 시 해당 검색어에 맞는 회사 검색 ( jqury, StockService.searchName)
 
 - Jqury
@@ -104,7 +114,9 @@ public class InitConfiguration {
 	}
 ```
 
-5. 알고리즘 Code : util.package - GetAlgorithm
+
+#### 5. 알고리즘 Code : util.package - GetAlgorithm
+
 ```
 public class GetAlgorithm {
 
@@ -142,8 +154,10 @@ public class GetAlgorithm {
 }
 ```
 
-6. API 호출 뒤 파싱 : util.package - GetAPI
-```
+
+#### 6. API 호출 뒤 파싱 : util.package - GetAPI
+
+``` 
 @Description("회사 6개월 간 기록 api")
     public List<StocksInfomation> getPriceAPI(String site) {
         List<StocksInfomation> list = new ArrayList<StocksInfomation>();
