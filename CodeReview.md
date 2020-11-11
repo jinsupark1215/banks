@@ -6,6 +6,7 @@
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Service("stockService")
 ```
+<br>
 
 
 #### 2. PathVariable : 쿼리스트링만 사용하는 경우 리퀘스트 2번 오는 현상
@@ -45,7 +46,7 @@
 		return nameList;
 	}
 ```
-
+<br>
 
 #### 3. 회사 이름 api 호출 시 api 할당량 초과
 
@@ -76,7 +77,7 @@ public class InitConfiguration {
     }
 }
 ```
-
+<br>
 
 #### 4. 회사 이름 전체 response 시 서버 딜레이 현상
 
@@ -113,7 +114,7 @@ public class InitConfiguration {
 		return nameList;
 	}
 ```
-
+<br>
 
 #### 5. 알고리즘 Code : util.package - GetAlgorithm
 
@@ -154,6 +155,7 @@ public class GetAlgorithm {
 }
 ```
 
+<br>
 
 #### 6. API 호출 뒤 파싱 : util.package - GetAPI
 
