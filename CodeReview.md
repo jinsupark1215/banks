@@ -81,9 +81,9 @@ public class InitConfiguration {
 
 #### 4. 회사 이름 전체 response 시 서버 딜레이 현상
 
-- 텍스트 변화 감지 시 해당 검색어에 맞는 회사 검색 ( jqury, StockService.searchName)
+- 텍스트 변화 감지 시 해당 검색어에 맞는 회사 검색 ( jQuery, StockService.searchName)
 
-- Jqury
+- JQuery
 ```
  $('#input').on('keyup', function () {
             var stockName = [];
