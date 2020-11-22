@@ -8,7 +8,7 @@
 
 ## 사용 기술
 - Backend : Spring boot(java version: 8)
-- frontend : html, css, jqury
+- frontend : html, css, jQuery
 - API : IEXcloud OpenAPI
 
 ## 시나리오
